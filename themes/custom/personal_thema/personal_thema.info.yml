@@ -1,0 +1,14 @@
+name: 'Thema Personal'
+type: theme
+description: 'Un tema personalizado para que editara la apariencia y funcionamento de los formularios.'
+package: Custom
+core_version_requirement: ^9 || ^10
+base theme: olivero
+libraries:
+  - personal_thema/estilos
+  - personal_thema/scripts
+regions:
+  header: 'Encabezado'
+  content: 'Contenido'
+  sidebar: 'Barra lateral'
+  footer: 'Pie de página'

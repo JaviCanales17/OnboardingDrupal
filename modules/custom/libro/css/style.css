@@ -1,0 +1,24 @@
+.titulo-destacado {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #f56767;
+}
+
+.etiqueta-anio {
+  background-color: #eee;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.sinopsis-bloque {
+  background-color: #f9f9f9;
+  border-left: 4px solid #0074d9;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.libro-reciente {
+  border: 2px solid #28a745;
+  background-color: #e9ffe9;
+}

@@ -1,0 +1,19 @@
+
+{% set clases = ['libro'] %}
+{% if es_reciente %}
+  {% set clases = clases|merge(['libro-reciente']) %}
+{% endif %}
+
+<article class="{{ clases|join(' ') }}">
+  <h2 class="titulo-destacado">{{ titulo }}</h2>
+  <p> <strong>Autor:</strong>  {{autor}} </p>
+  <p><strong>Año de publicacion:</strong> <span class="etiqueta-anio">{{ anio }}</span></p>
+  <p> <strong>Generos:</strong> 
+  {% for genero in generos %}
+    {{genero}}, 
+  {% endfor %}
+  </p>
+  <div class="sinopsis-bloque">
+    {{ sinopsis }}
+  </div>
+</article>

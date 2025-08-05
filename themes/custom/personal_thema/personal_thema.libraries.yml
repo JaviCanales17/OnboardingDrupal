@@ -1,0 +1,13 @@
+estilos:
+  css:
+    theme:
+      css/style.css: {}
+
+scripts:
+  js:
+    js/script.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
+    - core/drupal.once

@@ -1,0 +1,31 @@
+libro.mostrar_libros:
+  path: '/libros'
+  defaults:
+    _controller: '\Drupal\libro\Controller\LibroContoller::listadoLibros'
+    _title: 'Lista los Libros registrados'
+  requirements:
+    _permission: 'access content'
+
+libro.crear_libro:
+  path: '/libro/add'
+  defaults:
+    _form: '\Drupal\libro\Form\AgregarLibroForm'
+    _title: 'Añadir libro nuevo'
+  requirements:
+    _permission: 'access content'
+
+libro.info_libro:
+  path: '/libro/{id}'
+  defaults:
+    _controller: '\Drupal\libro\Controller\LibroContoller::libroInfo'
+    _title: 'Informacion sobre el libro'
+  requirements:
+    _permission: 'access content'
+
+libro.editar_libro:
+  path: '/libro/update/{id}'
+  defaults:
+    _form: '\Drupal\libro\Form\EditarLibroForm'
+    _title: 'Actulizar informacion'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,4 @@
+services:
+  registro_usuario.mi_servicio:
+    class: 'Drupal\registro_usuario\Service\RegistroServicio'
+    arguments: []

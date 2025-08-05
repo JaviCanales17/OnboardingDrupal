@@ -1,0 +1,23 @@
+registro_usuario.mensaje:
+  path: '/usuarios'
+  defaults:
+    _controller: '\Drupal\registro_usuario\Controller\RegistroUsuarioControlador::mostrarMensaje'
+    _title: 'Lista los usuarios registrados en registro_usuario_datos'
+  requirements:
+    _permission: 'access content'
+
+registro_usuario.api:
+  path: '/api/usuarios/{id}'
+  defaults:
+    _controller: '\Drupal\registro_usuario\Controller\RegistroUsuarioControlador::apiUsuarios'
+    _title: 'Una api para acceder a todos los dastos de los usuarios'
+  requirements:
+    _permission: 'authenticated'
+
+registro_usuario.editar_usuario:
+  path: '/editar-usuario/{id}'
+  defaults:
+    _form: '\Drupal\registro_usuario\Form\EdicionUsuarioFormulario'
+    _title: 'Formulario para la edicion de los datos del usuario'
+  requirements:
+    _permission: 'access content'

@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * @file
+ * Instalador del módulo que crea la tabla en la base de datos.
+ */
+
+use Drupal\Core\Database\SchemaObjectExistsException;
+
+/**
+ * Implementa hook_schema().
+ */
+function registro_usuario_schema() {
+  $schema['registro_usuario_datos'] = [
+    'description' => 'Tabla para almacenar los usuarios registrado a travez del formulario.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'nombre' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'correo' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'creado' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+  ];
+
+  return $schema;
+}

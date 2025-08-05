@@ -1,0 +1,11 @@
+estilos:
+  css:
+    theme:
+      css/style.css: {}
+
+chartjs:
+  version: 1.x
+  js:
+    https://cdn.jsdelivr.net/npm/chart.js: { type: external, minified: true }
+  dependencies:
+    - core/jquery

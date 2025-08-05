@@ -1,0 +1,5 @@
+name: Libro
+type: module
+description: 'Módulo para registrar libros en la base de datos.'
+package: 'Custom'
+core_version_requirement: ^10 || ^9

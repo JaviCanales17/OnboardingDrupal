@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * @file
+ * Instalador del módulo que crea la tabla en la base de datos.
+ */
+
+use Drupal\Core\Database\SchemaObjectExistsException;
+
+/**
+ * Implementa hook_schema().
+ */
+function libro_schema() {
+  $schema['libros'] = [
+    'description' => 'Tabla para almacenar los libros registrado a travez del formulario.',
+    'fields' => [
+      'id' => [ 
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'titulo' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'autor' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'APublicacion' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'sinopsis' => [
+        'type' => 'varchar',
+        'length' => 1000,
+        'not null' => TRUE,
+      ]
+    ],
+    'primary key' => ['id'],
+  ];
+
+  $schema['libro_genero'] = [
+    'fields' => [
+      'libroId' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'taxoId' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['libroId', 'taxoId'],
+    'indexes' => [
+      'taxoId' => ['taxoId'],
+    ],
+    'foreign keys' => [
+      'libroId' => [
+        'table' => 'libro',
+        'columns' => ['libroId' => 'id'],
+      ],
+      'taxoId' => [
+        'table' => 'taxonomy_term_field_data',
+        'columns' => ['taxoId' => 'tid'],
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+// Funcion para crear la base de datos si no existe
+
+function libro_update_8103() {
+  if (!\Drupal::database()->schema()->tableExists('libro_genero')) {
+    $schema = libro_schema();
+    \Drupal::database()->schema()->createTable('libro_genero', $schema['libro_genero']);
+  }
+}
+
+
+// Funcion parar borrar la base de datos si existe
+/*
+function libro_update_8104() {
+  if (\Drupal::database()->schema()->tableExists('libro_genero')) {
+    $schema = libro_schema();
+    \Drupal::database()->schema()->dropTable('libro_genero', $schema['libro_genero']);
+  }
+}
+*/

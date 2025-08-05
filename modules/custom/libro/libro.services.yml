@@ -1,0 +1,22 @@
+services:
+  libro.libro_servicio:
+    class: 'Drupal\libro\Service\LibroService'
+    arguments: []
+
+  libro.saludo_manager:
+    class: Drupal\libro\SaludoPluginManager
+    arguments: 
+      - '@container.namespaces'
+      - '@cache.default'
+      - '@module_handler'
+
+  libro.user_login_subscriber:
+    class: Drupal\libro\EventSubscriber\UserLoginSubscriber
+    arguments: ['@logger.channel.libro']
+    tags:
+      - { name: event_subscriber }
+
+  logger.channel.libro:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: ['@logger.factory', 'get']
+    arguments: ['libro']

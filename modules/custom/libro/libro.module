@@ -1,0 +1,71 @@
+<?php
+
+use Drupal\libro\Event\UserLoginEvent;
+use Drupal\user\UserInterface;
+
+
+function libro_user_login(UserInterface $account) {
+  $event = new UserLoginEvent($account);
+  \Drupal::service('event_dispatcher')->dispatch($event, UserLoginEvent::LOGIN);
+}
+
+//obciones validas para el nuevo tema libro
+function libro_theme($existing, $type, $theme, $path) {
+  return [
+    'libro' => [
+      'variables' => [
+        'titulo' => NULL,
+        'autor' => NULL,
+        'anio' => NULL,
+        'generos' => NULL,
+        'sinopsis' => NULL,
+        'es_reciente' => FALSE,
+      ],
+    ],
+  ];
+}
+
+
+//funcion para poder crear una vista desde la interfaz con una base de datos en .install
+function libro_views_data() {
+  $data = [];
+
+  $data['libros']['table']['group'] = t('Libros');
+  
+  $data['libros']['table']['base'] = [
+    'field' => 'id',
+    'title' => t('Libros'),
+    'help' => t('Listado de libros'),
+  ];
+
+  $data['libros']['id'] = [
+    'title' => t('ID'),
+    'field' => ['id' => 'numeric',],
+    'filter' => ['id' => 'numeric',],
+  ];
+
+  $data['libros']['titulo'] = [
+    'title' => t('Título'),
+    'field' => ['id' => 'standard'],
+  ];
+
+  $data['libros']['autor'] = [
+    'title' => t('Autor'),
+    'field' => ['id' => 'standard'],
+    'filter' => ['id' => 'string'],
+  ];
+
+  $data['libros']['APublicacion'] = [
+    'title' => t('Año de publicación'),
+    'field' => ['id' => 'standard'],
+    'filter' => ['id' => 'numeric'],
+  ];
+
+  $data['libros']['sinopsis'] = [
+    'title' => t('Sinopsis'),
+    'field' => ['id' => 'standard'],
+    'filter' => ['id' => 'string'],
+  ];
+
+  return $data;
+}
